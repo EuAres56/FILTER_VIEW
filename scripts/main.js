@@ -1,162 +1,265 @@
-function createCircle(id_filter) {
-    const paint = document.getElementById('paint');
-    const circle = document.createElement('div');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
 
-    const filters = document.getElementById('control-filters');
-    const layer = document.createElement('div');
-    layer.classList.add('layer');
-    filters.appendChild(layer);
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    width: 100%;
+    background-color: #404040;
+}
 
-    paint.appendChild(circle);
-    circle.classList.add('circle');
-    circle.classList.add(`filter_${id_filter}`);
+.control-view.collapsed {
+    width: 30px;
+}
 
-    if (id_filter == '1') {
-        const input = document.createElement('input');
-        input.type = 'text';
+.control-view.collapsed .control-layers-background,
+.control-view.collapsed #control-layers,
+.control-view.collapsed p {
+    display: none;
+}
 
-        const filters = document.querySelectorAll('.filter_1');
-        const idSuffix = filters.length;
+.control-view.collapsed #toggle-retrail {
+    display: flex;
+}
 
-        circle.id = 'area_' + idSuffix;
-        input.id = 'layer_' + idSuffix;
+#toggle-retrail {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    cursor: pointer;
+}
 
-        layer.appendChild(input);
+.mainscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 14px;
+    height: 100dvh;
+    background-color: rgb(255, 255, 255);
+}
 
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remover';
-        removeBtn.classList.add('remove-button');
-        layer.appendChild(removeBtn);
+.control-view {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100dvh;
+    background-color: #00000072;
+    padding: 5px;
+    gap: 10px;
+}
 
-        removeBtn.addEventListener('click', () => {
-            circle.remove();
-            layer.remove();
-        });
+.control-layers-background {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 25px;
+    gap: 10px;
+    border: 1px solid #ffffff;
+}
 
-        input.addEventListener('input', (event) => {
-            circle.innerText = event.target.value;
-        });
-    }
-    if (id_filter == '2') {
-        const input = document.createElement('input');
-        input.type = 'text';
+#background-1 {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
 
-        const filters = document.querySelectorAll('.filter_2');
-        const idSuffix = filters.length;
+#background-2 {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(64, 64, 64);
+}
 
-        circle.id = 'identidade_' + idSuffix;
-        input.id = 'layer_' + idSuffix;
+#background-3 {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(21, 21, 21);
+}
 
-        layer.appendChild(input);
+#control-layers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+    border: 1px solid #ffffff;
+}
 
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remover';
-        removeBtn.classList.add('remove-button');
-        layer.appendChild(removeBtn);
+#add-filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 25px;
+    gap: 10px;
+    border: 1px solid #ffffff;
+}
 
-        removeBtn.addEventListener('click', () => {
-            circle.remove();
-            layer.remove();
-        });
+#filter_1 {
+    height: 100%;
+    width: 100%;
+    background-color: #ff0000;
+    text-align: center;
+}
 
-        input.addEventListener('input', (event) => {
-            circle.innerText = event.target.value;
-        });
-    }
-    if (id_filter == '3') {
-        const input = document.createElement('input');
-        input.type = 'text';
+#filter_2 {
+    height: 100%;
+    width: 100%;
+    background-color: #0800ff;
+    text-align: center;
+}
 
-        const filters = document.querySelectorAll('.filter_3');
-        const idSuffix = filters.length;
+#filter_3 {
+    height: 100%;
+    width: 100%;
+    background-color: #ffee00;
+    text-align: center;
+}
 
-        circle.id = 'habilidade_' + idSuffix;
-        input.id = 'layer_' + idSuffix;
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    place-content: center;
+    place-items: center;
+    font-size: 200%;
+    overflow: hidden;
+    text-wrap: wrap;
+    box-sizing: border-box;
+}
 
-        layer.appendChild(input);
+.filter_1 {
+    background-color: rgba(255, 0, 0, 0.25);
+    height: calc(30vh * 1.618);
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: calc(50% - (30vh * 1.618) / 2);
+    left: calc(50% - (30vh * 1.618) / 2);
+    z-index: 10;
+}
 
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remover';
-        removeBtn.classList.add('remove-button');
-        layer.appendChild(removeBtn);
+.filter_2 {
+    background-color: rgba(8, 0, 255, 0.5);
+    height: 30vh;
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: calc(50% - (30vh / 2));
+    left: calc(50% - (30vh / 2));
+    z-index: 20;
+}
 
-        removeBtn.addEventListener('click', () => {
-            circle.remove();
-            layer.remove();
-        });
+.filter_3 {
+    background-color: rgba(255, 238, 0, 0.5);
+    height: calc(30vh * 0.618);
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: calc(50% - (30vh * 0.618) / 2);
+    left: calc(50% - (30vh * 0.618) / 2);
+    z-index: 30;
+}
 
-        input.addEventListener('input', (event) => {
-            circle.innerText = event.target.value;
-        });
-    }
+#paint {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
 
-    let isDragging = false;
-    let isTouchDragging = false;
-    let touchHoldTimer = null;
+.layer {
+    display: flex;
+    height: 25px;
+    width: 100%;
+    border: 1px solid #ffffff;
+}
 
-    function moveCircle(x, y) {
-        circle.style.left = (x - circle.clientWidth / 2) + 'px';
-        circle.style.top = (y - circle.clientHeight / 2) + 'px';
-    }
+.layer input {
+    background-color: #404040;
+    color: white;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 
-    function onMouseMove(event) {
-        if (isDragging) {
-            moveCircle(event.clientX, event.clientY);
-        }
-    }
+.btn_remove_red {
+    background-color: #ff0000;
+    color: white;
+    width: 40px;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+}
 
-    function startDragging(x, y) {
-        isDragging = true;
-        moveCircle(x, y);
-        paint.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mouseup', stopDragging);
-    }
+.btn_remove_blue {
+    background-color: #0800ff;
+    color: white;
+    width: 40px;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+}
 
-    function stopDragging() {
-        isDragging = false;
-        isTouchDragging = false;
-        paint.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', stopDragging);
-    }
+.btn_remove_yellow {
+    background-color: #ffee00;
+    color: white;
+    width: 40px;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+}
 
-    // Desktop
-    circle.addEventListener('mousedown', (e) => {
-        startDragging(e.clientX, e.clientY);
-    });
-
-    // Mobile
-    circle.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-
-        // leve atraso para iniciar o drag
-        touchHoldTimer = setTimeout(() => {
-            isTouchDragging = true;
-            startDragging(touch.clientX, touch.clientY);
-        }, 500);
-    });
-
-    circle.addEventListener('touchmove', (e) => {
-        if (isTouchDragging) {
-            const touch = e.touches[0];
-            moveCircle(touch.clientX, touch.clientY);
-        }
-    });
-
-    circle.addEventListener('touchend', () => {
-        clearTimeout(touchHoldTimer);
-        stopDragging();
-    });
+#control-filters {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 5px;
+    border: 1px solid #ffffff;
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('toggle-retrail');
-    const sidebar = document.getElementById('sidebar');
-    const symbol = document.getElementById('toggle-symbol');
+@media (max-width: 600px) {
+    .filter_1 {
+        height: calc(50vw * 1.618);
+        top: calc(50% - (50vw * 1.618) / 2);
+        left: calc(50% - (50vw * 1.618) / 2);
 
-    toggle.addEventListener('click', () => {
-        sidebar.classList.toggle('collapsed');
-        symbol.textContent = sidebar.classList.contains('collapsed') ? '<<' : '>>';
-    });
-});
+    }
+
+    .filter_2 {
+        height: 50vw;
+        top: calc(50% - (50vw / 2));
+        left: calc(50% - (50vw / 2));
+    }
+
+    .filter_3 {
+        height: calc(50vw * 0.618);
+        top: calc(50% - (50vw * 0.618) / 2);
+        left: calc(50% - (50vw * 0.618) / 2);
+    }
+}
