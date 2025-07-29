@@ -11,9 +11,6 @@ function createCircle(id_filter) {
     circle.classList.add('circle');
     circle.classList.add(`filter_${id_filter}`);
 
-    console.log(id_filter);
-    console.log(circle);
-
     if (id_filter == '1') {
         const input = document.createElement('input');
         input.type = 'text';
