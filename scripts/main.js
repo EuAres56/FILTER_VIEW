@@ -40,6 +40,58 @@ function createCircle(id_filter) {
             circle.innerText = event.target.value;
         });
     }
+    if (id_filter == '2') {
+        const input = document.createElement('input');
+        input.type = 'text';
+
+        const filters = document.querySelectorAll('.filter_2');
+        const idSuffix = filters.length;
+
+        circle.id = 'identidade_' + idSuffix;
+        input.id = 'layer_' + idSuffix;
+
+        layer.appendChild(input);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remover';
+        removeBtn.classList.add('remove-button');
+        layer.appendChild(removeBtn);
+
+        removeBtn.addEventListener('click', () => {
+            circle.remove();
+            layer.remove();
+        });
+
+        input.addEventListener('input', (event) => {
+            circle.innerText = event.target.value;
+        });
+    }
+    if (id_filter == '3') {
+        const input = document.createElement('input');
+        input.type = 'text';
+
+        const filters = document.querySelectorAll('.filter_3');
+        const idSuffix = filters.length;
+
+        circle.id = 'habilidade_' + idSuffix;
+        input.id = 'layer_' + idSuffix;
+
+        layer.appendChild(input);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remover';
+        removeBtn.classList.add('remove-button');
+        layer.appendChild(removeBtn);
+
+        removeBtn.addEventListener('click', () => {
+            circle.remove();
+            layer.remove();
+        });
+
+        input.addEventListener('input', (event) => {
+            circle.innerText = event.target.value;
+        });
+    }
 
     let isDragging = false;
     let isTouchDragging = false;
