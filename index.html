@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Filter View</title>
+</head>
+
+<body>
+
+    <div id="paint" class="mainscreen">
+
+    </div>
+    <div class="control-view" id="sidebar">
+        <div id="toggle-retrail">
+            <a id="toggle-symbol">>></a>
+        </div>
+        <p>Cores de fundo</p>
+        <div class="control-layers-background">
+            <div id="background-1" onclick="changeBackground('rgb(255, 255, 255)')"></div>
+            <div id="background-2" onclick="changeBackground('rgb(64, 64, 64)')"></div>
+            <div id="background-3" onclick="changeBackground('rgb(21, 21, 21)')"></div>
+        </div>
+        <p>Camadas</p>
+        <div id="control-layers">
+            <div id="add-filters">
+                <div id="filter_1" onclick="createCircle('1')">+</div>
+                <div id="filter_2" onclick="createCircle('2')">+</div>
+                <div id="filter_3" onclick="createCircle('3')">+</div>
+            </div>
+            <div id="control-filters">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="scripts/main.js"></script>
+
+</html>
