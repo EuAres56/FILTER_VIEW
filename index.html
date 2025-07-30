@@ -5,36 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <title>Filter View</title>
 </head>
 
 <body>
 
     <div id="paint" class="mainscreen">
-
+        <div id="paint-content"></div>
     </div>
     <div class="control-view" id="sidebar">
         <div id="toggle-retrail">
-            <a id="toggle-symbol">>></a>
+            <a id="toggle-symbol">►</a>
         </div>
+        <a type="button" id="export-pdf">Salvar como PDF</a>
         <p>Cores de fundo</p>
         <div class="control-layers-background">
-            <div id="background-1" onclick="changeBackground('rgb(255, 255, 255)')"></div>
-            <div id="background-2" onclick="changeBackground('rgb(64, 64, 64)')"></div>
-            <div id="background-3" onclick="changeBackground('rgb(21, 21, 21)')"></div>
+            <input id="background" type="color" value="#ffffff"></input>
         </div>
-        <p>Camadas</p>
         <div id="control-layers">
+            <p>Circulos</p>
             <div id="add-filters">
                 <div id="filter_1" onclick="createCircle('1')">+</div>
                 <div id="filter_2" onclick="createCircle('2')">+</div>
                 <div id="filter_3" onclick="createCircle('3')">+</div>
+                <div id="filter_4" onclick="createCircle('4')">+</div>
             </div>
+            <p>Camadas</p>
             <div id="control-filters">
             </div>
         </div>
     </div>
+    <script src="scripts.js"></script>
 </body>
-<script src="scripts.js"></script>
 
 </html>
